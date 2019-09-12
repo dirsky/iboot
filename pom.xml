@@ -7,6 +7,49 @@
     <groupId>top.gzxu</groupId>
     <artifactId>iboot</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>iboot-framework</module>
+        <module>iboot-common</module>
+        <module>iboot-system</module>
+        <module>iboot-web</module>
+    </modules>
+
+    <name>iboot</name>
+    <url>http://gzxu.top</url>
+    <description>this is my deep boot</description>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>2.1.8.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <packaging>pom</packaging>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 
 </project>
