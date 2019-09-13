@@ -11,7 +11,7 @@
 
     <artifactId>iboot-system</artifactId>
 
-    <description>系统配置</description>
+    <description>关于系统的实现</description>
 
     <dependencies>
 
