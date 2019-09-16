@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import top.gzxu.iboot.system.dao.SysNoticeDao;
 import top.gzxu.iboot.system.domain.SysNotice;
 
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author Frank
@@ -24,6 +23,27 @@ public class SysNoticeController {
     @Autowired
     private SysNoticeDao sysNoticeDao;
 
+    @GetMapping("/test")
+    public String test(Map<String, Object> paramMap) {
+        /** 默认Map的内容会放大请求域中，页面可以直接使用Thymeleaf取值*/
+        paramMap.put("name", "徐国忠");
+        paramMap.put("age", 18);
+
+        List<String> list = new ArrayList<String>();
+        list.add("1s");
+        list.add("2s");
+        list.add("3s");
+        paramMap.put("list",list);
+
+        List<ChannelItem> channels = new ArrayList<>();
+        channels.add(new ChannelItem(1, "frank"));
+        channels.add(new ChannelItem(2, "candy"));
+        channels.add(new ChannelItem(3, "dog"));
+
+        paramMap.put("channels", channels);
+
+        return prefix + "/test";
+    }
     @GetMapping()
     public String notice() {
         return prefix + "/notice";
@@ -48,5 +68,32 @@ public class SysNoticeController {
 
 
         return sysNoticeDao.getOne(id);
+    }
+}
+
+
+class ChannelItem {
+    private Integer id;
+    private String name;
+
+    public ChannelItem(Integer id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

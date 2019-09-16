@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+</head>
+<body>
+<h3>欢迎来到主页</h3>
+<!--Thymeleaf 语法取值-->
+姓名：<span th:text="${name}">未知</span>
+年龄：<span th:text="${age}">未知</span>
+
+<th:block th:each="mylist,iterStat:${list}">
+    <br/>line
+    <span th:text="${mylist}"></span>
+    <th:block th:if="${iterStat.index le 1}">
+        <span th:text="${mylist}"></span>
+    </th:block>
+</th:block>
+
+<select name="subId" id="subId" lay-verify="" >
+    <option value="">请选择</option>
+    <option th:each="item:${channels}" th:selected="${item.id == subId}"
+            th:value="${item.id}" th:text="${item.name}"></option>
+</select>
+
+<!--写入绝对路径即可引入 -->
+<div th:include="include/footer :: footer"></div>
+</body>
+
+<!--传递参数到js中-->
+<script th:inline="javascript"  >
+    let size= [[${list.size()}]];
+    console.info(size)
+</script>
+</html>
